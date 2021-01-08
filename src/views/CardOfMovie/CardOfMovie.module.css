@@ -1,0 +1,54 @@
+.text {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+  text-decoration: none;
+  font-size: 18pxpx;
+  color: #ffffff;
+}
+
+.title {
+  composes: text;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 8px 20px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  border: transparent;
+  cursor: pointer;
+  background-color: white;
+}
+
+.btn:hover {
+  color: #ffffff;
+
+  background-color: #ff6b08;
+}
+
+.card {
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  grid-gap: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  padding-bottom: 50px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardAbout {
+  margin-left: 50px;
+}
+
+img {
+  display: block;
+  margin-bottom: 20px;
+
+  border-radius: 5px;
+}
