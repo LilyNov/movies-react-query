@@ -1,4 +1,3 @@
-import { useQuery } from "react-query";
 import {
   Route,
   useParams,
@@ -6,6 +5,7 @@ import {
   NavLink,
   useLocation,
 } from "react-router-dom";
+import { useQuery } from "react-query";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { animateScroll as scroll } from "react-scroll";
 import { KEY, BASE_URL } from "../../service/home-app";
@@ -23,31 +23,22 @@ export default function MovieDetailsPage() {
   const { slug } = useParams();
   const movieId = slug.match(/[a-zA-Z0-9]+$/)[0];
   const { data, status } = useQuery("movieDetailsPage", () =>
-    fetch(`${BASE_URL}/movie/${movieId}?api_key=${KEY}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `${BASE_URL}/movie/${movieId}?api_key=${KEY}&language=en-US`
+    ).then((res) => res.json())
   );
 
   return (
     <div>
       {status === "error" && (
         <StatusError
-          message={"not found anything"}
+          message={data.status_message}
           style={{ textAlign: "center" }}
         />
       )}
       {status === "success" && (
         <>
-          <CardOfMovie
-            title={data.title}
-            image={
-              data.backdrop_path !== null
-                ? `https://image.tmdb.org/t/p/w500/${data.backdrop_path}`
-                : "https://dummyimage.com/640x480/2a2a2a/ffffff&text=Foto"
-            }
-            overview={data.overview}
-            part={data?.genres?.map((movie) => movie.name)}
-          />
+          <CardOfMovie movies={data} />
           <section className={s.about}>
             <NavLink
               onClick={() => {

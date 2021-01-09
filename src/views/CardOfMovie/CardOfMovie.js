@@ -1,12 +1,19 @@
-import { useLocation, useHistory } from 'react-router-dom';
-import s from '../CardOfMovie/CardOfMovie.module.css';
+import { useLocation, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import s from "../CardOfMovie/CardOfMovie.module.css";
 
-export default function CardOfMovie({ title, image, overview, part }) {
+export default function CardOfMovie({ movies }) {
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-zA-Z0-9]+$/)[0];
   const location = useLocation();
   const history = useHistory();
+  // const movie = movies.find((movie) => movie.id === Number(movieId));
+  // console.log(movie);
+  console.log(movies);
+  console.log(movieId);
 
   const onGoBack = () => {
-    history.push(location?.state?.from ?? '/movies');
+    history.push(location?.state?.from ?? "/movies");
   };
 
   return (
@@ -16,14 +23,22 @@ export default function CardOfMovie({ title, image, overview, part }) {
       </button>
 
       <section className={s.card}>
-        <img src={image} alt={title} />
+        <img
+          src={
+            `https://image.tmdb.org/t/p/w500/${movies.backdrop_path}` ??
+            "https://dummyimage.com/640x480/2a2a2a/ffffff&text=Foto"
+          }
+          alt={movies.title || movies.name}
+        />
         <div className={s.cardAbout}>
-          <h2 className={s.title}>{title}</h2>
-          <p className={s.text}>
-            {part[0]} <br />
-            {part[1]}
-          </p>
-          <p className={s.text}>{overview}</p>
+          <h2 className={s.title}>{movies.title || movies.name}</h2>
+          {movies.genres.map((movie) => (
+            <p key={movie.name} className={s.text}>
+              {movie.name} <br />
+            </p>
+          ))}
+
+          <p className={s.text}>{movies.overview}</p>
         </div>
       </section>
     </>
