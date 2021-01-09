@@ -4,6 +4,7 @@ import slugify from "slugify";
 import StatusError from "../../StatusError/StatusError";
 import s from "../HomePage/HomePage.module.css";
 import { KEY, BASE_URL } from "../../service/home-app";
+import Loader from "react-loader-spinner";
 
 const makeSlug = (string) => slugify(string, { lower: true });
 
@@ -23,6 +24,8 @@ export default function HomePage() {
           style={{ textAlign: "center" }}
         />
       )}
+
+      {status === "loading" && <Loader />}
 
       {status === "success" && (
         <>

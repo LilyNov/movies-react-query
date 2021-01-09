@@ -4,13 +4,9 @@ import s from "../CardOfMovie/CardOfMovie.module.css";
 
 export default function CardOfMovie({ movies }) {
   const { slug } = useParams();
-  const movieId = slug.match(/[a-zA-Z0-9]+$/)[0];
+  // const movieId = slug.match(/[a-zA-Z0-9]+$/)[0];
   const location = useLocation();
   const history = useHistory();
-  // const movie = movies.find((movie) => movie.id === Number(movieId));
-  // console.log(movie);
-  console.log(movies);
-  console.log(movieId);
 
   const onGoBack = () => {
     history.push(location?.state?.from ?? "/movies");

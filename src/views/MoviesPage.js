@@ -16,7 +16,6 @@ export default function MoviesPage() {
   const [querySearchParams, setQuery] = useState(
     new URLSearchParams(location.search).get("query") ?? []
   );
-  console.log("querySearchParams 1", querySearchParams);
 
   const { data, status } = useQuery(["moviesPage", querySearchParams], () =>
     fetch(
@@ -30,6 +29,8 @@ export default function MoviesPage() {
       }
     })
   );
+
+  console.log(data);
 
   return (
     <>
