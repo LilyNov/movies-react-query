@@ -1,23 +1,23 @@
-import { Switch, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import Loader from './Loader/Loader';
-import Container from './Container/Container';
-import AppBar from './AppBar/AppBar';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { Switch, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import Loader from "./Loader/Loader";
+import Container from "./Container/Container";
+import AppBar from "./AppBar/AppBar";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const HomePage = lazy(() =>
-  import('./views/HomePage/HomePage.js' /*webpackChunkName: "home-page" */),
+  import("./views/HomePage/HomePage.js" /*webpackChunkName: "home-page" */)
 );
 const MoviesPage = lazy(() =>
-  import('./views/MoviesPage.js' /*webpackChunkName: "movies-page" */),
+  import("./views/MoviesPage.js" /*webpackChunkName: "movies-page" */)
 );
 const NotFoundView = lazy(() =>
-  import('./views/NotFoundView.js' /*webpackChunkName: "notFound-page" */),
+  import("./views/NotFoundView.js" /*webpackChunkName: "notFound-page" */)
 );
 const MovieDetailsPage = lazy(() =>
   import(
-    './views/MovieDetailsPage/MovieDetailsPage.js' /*webpackChunkName: "movieDetails-page" */
-  ),
+    "./views/MovieDetailsPage/MovieDetailsPage.js" /*webpackChunkName: "movieDetails-page" */
+  )
 );
 
 export default function App() {

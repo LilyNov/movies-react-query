@@ -1,10 +1,7 @@
 import { useLocation, useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import s from "../CardOfMovie/CardOfMovie.module.css";
 
 export default function CardOfMovie({ movies }) {
-  const { slug } = useParams();
-  // const movieId = slug.match(/[a-zA-Z0-9]+$/)[0];
   const location = useLocation();
   const history = useHistory();
 

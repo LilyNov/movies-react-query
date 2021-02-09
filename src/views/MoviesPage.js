@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { ToastContainer } from "react-toastify";
 import { useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
 import Loader from "../Loader/Loader";
 import Searchbar from "./Searchbar/Searchbar";
 import StatusError from "../StatusError/StatusError";
@@ -68,7 +67,3 @@ export default function MoviesPage() {
     </>
   );
 }
-
-MoviesPage.propTypes = {
-  querySearchParams: PropTypes.string,
-};

@@ -13,6 +13,7 @@ import StatusError from "../../StatusError/StatusError";
 import CardOfMovie from "../CardOfMovie/CardOfMovie";
 import Cast from "../Cast/Cast";
 import Reviews from "../Reviews/Reviews";
+import Loader from "../../Loader/Loader";
 import s from "../MovieDetailsPage/MovieDetailsPage.module.css";
 
 export default function MovieDetailsPage() {
@@ -36,6 +37,7 @@ export default function MovieDetailsPage() {
           style={{ textAlign: "center" }}
         />
       )}
+      {status === "loading" && <Loader />}
       {status === "success" && (
         <>
           <CardOfMovie movies={data} />
@@ -46,7 +48,7 @@ export default function MovieDetailsPage() {
               }}
               to={{
                 pathname: `${url}/cast`,
-                state: { from: location },
+                state: { from: location?.state?.from ?? "/movies" },
               }}
               className={s.link}
               activeClassName={s.activeLink}
@@ -55,11 +57,11 @@ export default function MovieDetailsPage() {
             </NavLink>
             <NavLink
               onClick={() => {
-                scroll.scrollToBottom();
+                scroll.scrollMore(250);
               }}
               to={{
                 pathname: `${url}/reviews`,
-                state: { from: location },
+                state: { from: location?.state?.from ?? "/movies" },
               }}
               className={s.link}
               activeClassName={s.activeLink}
